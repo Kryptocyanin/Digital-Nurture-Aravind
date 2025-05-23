@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Community Event Portal</title>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#home" class="navbar-brand">🏛️ Community Portal</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#registration">Register</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#help">Help</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Section -->
+        <section id="home">
+            <div id="welcomeBanner" class="fade-in">
+                <h1>Welcome to Our Community Portal</h1>
+                <p class="lead">Connect, Engage, and Participate in Local Events</p>
+                <span class="highlight">Special Offer: 20% off community workshops!</span>
+                <div class="banner-actions">
+                    <a href="#events" class="btn btn-primary">Explore Events</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Bulletin -->
+        <section id="bulletin">
+            <h2 class="section-title">Community Bulletin</h2>
+            <div class="community-bulletin">
+                <h3>Latest News</h3>
+                <p>The city council has approved new funding for community programs. Residents can now apply for grants to support local initiatives. The application process has been streamlined to make it easier for community groups to access resources.</p>
+                
+                <h3>Upcoming Infrastructure</h3>
+                <p>Construction of the new community center will begin next month. The facility will include meeting rooms, a gymnasium, and spaces for cultural events. We encourage all residents to participate in the design feedback sessions. The project timeline includes groundbreaking in July, foundation work through August, and completion expected by spring next year.</p>
+                
+                <h3>Volunteer Opportunities</h3>
+                <p>Join our volunteer network and make a difference in your community. Opportunities range from environmental cleanup projects to helping at local events. Contact our volunteer coordinator for more information.</p>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section id="events">
+            <h2 class="section-title">Upcoming Events</h2>
+            
+            <!-- Event Controls -->
+            <div class="controls">
+                <div class="form-group">
+                    <label for="eventFilter">Filter by Category:</label>
+                    <select id="eventFilter">
+                        <option value="all">All Events</option>
+                        <option value="workshop">Workshops</option>
+                        <option value="music">Music</option>
+                        <option value="sports">Sports</option>
+                        <option value="community">Community</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="eventSearch">Search Events:</label>
+                    <input type="text" id="eventSearch" placeholder="Search by name...">
+                </div>
+                <div class="form-group">
+                    <label>&nbsp;</label>
+                    <button id="findNearbyBtn" class="btn btn-outline">
+                        📍 Find Nearby Events
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Loading Spinner -->
+            <div id="loadingSpinner" class="spinner hidden"></div>
+            
+            <!-- Events Container -->
+            <div id="eventsContainer" class="events-grid">
+                <!-- Events will be populated by JavaScript -->
+            </div>
+            
+            <!-- Location Display -->
+            <div id="locationDisplay" class="alert alert-info hidden">
+                <h4>📍 Your Location</h4>
+                <p id="locationInfo"></p>
+            </div>
+        </section>
+
+        <!-- Event Gallery -->
+        <section id="gallery">
+            <h2 class="section-title">Past Events Gallery</h2>
+            <div class="table-container">
+                <table>
+                    <caption>Images from our recent community events</caption>
+                    <thead>
+                        <tr>
+                            <th>Summer Festival</th>
+                            <th>Art Workshop</th>
+                            <th>Sports Day</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src="https://picsum.photos/120/80?random=1" 
+                                     alt="Summer Festival" title="Summer Festival 2024" class="gallery-img">
+                            </td>
+                            <td>
+                                <img src="https://picsum.photos/120/80?random=2" 
+                                     alt="Art workshop" title="Community Art Workshop" class="gallery-img">
+                            </td>
+                            <td>
+                                <img src="https://picsum.photos/120/80?random=3" 
+                                     alt="Sports day" title="Annual Sports Day" class="gallery-img">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="https://picsum.photos/120/80?random=4" 
+                                     alt="Music concert" title="Music in the Park" class="gallery-img">
+                            </td>
+                            <td>
+                                <img src="https://picsum.photos/120/80?random=5" 
+                                     alt="Food festival" title="Local Food Festival" class="gallery-img">
+                            </td>
+                            <td>
+                                <img src="https://picsum.photos/120/80?random=6" 
+                                     alt="Community cleanup" title="Neighborhood Cleanup" class="gallery-img">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section id="video">
+            <h2 class="section-title">Community Events Promo</h2>
+            <div class="video-container">
+                <video id="promoVideo" controls poster="https://picsum.photos/800/450?random=7">
+                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                    <p>Your browser doesn't support HTML5 video. <a href="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">Download the video</a> instead.</p>
+                </video>
+                <div id="videoMessage" class="alert alert-info hidden">
+                    🎬 Video ready to play!
+                </div>
+                <p class="video-description">Experience the excitement of our community events!</p>
+            </div>
+        </section>
+
+        <!-- Registration Section -->
+        <section id="registration">
+            <h2 class="section-title">Event Registration</h2>
+            <div class="registration-container">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="registrationForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="userName">Full Name *</label>
+                                    <input type="text" id="userName" required autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <label for="userEmail">Email Address *</label>
+                                    <input type="email" id="userEmail" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="userPhone">Phone Number</label>
+                                    <input type="tel" id="userPhone" placeholder="(555) 123-4567">
+                                </div>
+                                <div class="form-group">
+                                    <label for="eventDate">Preferred Date *</label>
+                                    <input type="date" id="eventDate" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="eventType">Event Type </label>
+                                <select id="eventType" required>
+                                    <option value="">Select an event type</option>
+                                    <option value="workshop" data-fee="25">Workshop ($25)</option>
+                                    <option value="music" data-fee="15">Music Event ($15)</option>
+                                    <option value="sports" data-fee="10">Sports Activity ($10)</option>
+                                    <option value="community" data-fee="0">Community Meeting (Free)</option>
+                                </select>
+                                <div id="eventFee" class="fee-display hidden">
+                                    Event Fee: $<span id="feeAmount">0</span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="userMessage">Additional Message</label>
+                                <textarea id="userMessage" rows="3" placeholder="Any special requests..."></textarea>
+                                <div class="char-counter">
+                                    <span id="charCount">0</span> characters
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-full">
+                                📧 Register for Event
+                            </button>
+                            
+                            <div id="formOutput" class="hidden"></div>
+                        </form>
+                        
+                        <!-- User Preferences -->
+                        <div class="preferences-section">
+                            <h5>User Preferences</h5>
+                            <div class="preferences-buttons">
+                                <button id="savePreferences" class="btn btn-outline">Save Preferences</button>
+                                <button id="clearPreferences" class="btn btn-outline">Clear Preferences</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-grid">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>📍 Location</h5>
+                        <p>123 Community Center Drive<br>Hometown, ST 12345</p>
+                        
+                        <h5>📞 Phone</h5>
+                        <p>(555) 123-4567</p>
+                        
+                        <h5>📧 Email</h5>
+                        <p>info@communityportal.gov</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5>🕒 Office Hours</h5>
+                        <p>Monday - Friday: 9:00 AM - 5:00 PM<br>
+                        Saturday: 10:00 AM - 2:00 PM<br>
+                        Sunday: Closed</p>
+                        
+                        <h5>🚨 Emergency Contact</h5>
+                        <p>For urgent community issues:<br>767677-HELP</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Help Section -->
+        <section id="help">
+            <h2 class="section-title">Help & Support</h2>
+            <div class="help-grid">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>🚀 Getting Started</h5>
+                        <p>Welcome to the Community Portal! Here's how to use it:</p>
+                        <ol>
+                            <li>Browse events in the Events section</li>
+                            <li>Use filters to find specific events by category</li>
+                            <li>Click "Register Now" to sign up for events</li>
+                            <li>Use "Find Nearby Events" for location-based search</li>
+                            <li>Fill out the registration form with your details</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5>📝 Event Registration</h5>
+                        <p>How to register for events:</p>
+                        <ul>
+                            <li><strong>Quick Registration:</strong> Click "Register Now" on event cards</li>
+                            <li><strong>Detailed Registration:</strong> Use the Registration form</li>
+                            <li>Fill required fields: name, email, event type</li>
+                            <li>Save preferences for future registrations</li>
+                            <li>Receive confirmation via email</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5>🏷️ Event Categories</h5>
+                        <div>
+                            <p><span class="event-category workshop">Workshops</span> - Educational and skill-building sessions</p>
+                            <p><span class="event-category music">Music</span> - Concerts, performances, and music events</p>
+                            <p><span class="event-category sports">Sports</span> - Athletic activities and tournaments</p>
+                            <p><span class="event-category community">Community</span> - Town halls and community meetings</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5>📍 Location Services</h5>
+                        <p>Finding events near you:</p>
+                        <ul>
+                            <li>Click "Find Nearby Events" button</li>
+                            <li>Allow location access when prompted by browser</li>
+                            <li>View events filtered by proximity to you</li>
+                            <li>Your location data is only used temporarily</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5>🔧 Troubleshooting</h5>
+                        <p>Common issues and solutions:</p>
+                        <ul>
+                            <li><strong>Form Issues:</strong> Ensure all required fields are filled</li>
+                            <li><strong>Location Access:</strong> Enable browser location permissions</li>
+                            <li><strong>Video Problems:</strong> Check internet connection</li>
+                            <li><strong>Browser Support:</strong> Use Chrome, Firefox, Safari, or Edge</li>
+                            <li><strong>General Issues:</strong> Try refreshing the page</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5>📞 Contact Support</h5>
+                        <div>
+                            <p><strong>Phone:</strong> 123-4567</p>
+                            <p><strong>Email:</strong> blah@communityportal.gov</p>
+                            <p><strong>Hours:</strong> Mon-Fri 9AM-5PM</p>
+                            <p><strong>Emergency:</strong>  911-HELP</p>
+                        </div>
+                        
+                        <div class="alert alert-info mt-3">
+                            💡 <strong>Quick Tip:</strong> Email us for fastest response - we reply within 24 hours!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Overview -->
+            <div class="features-section">
+                <h3 class="text-center mb-4">Portal Features</h3>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <i>🎥</i>
+                        <h6>Video Gallery</h6>
+                        <p>Watch community event videos</p>
+                    </div>
+                    <div class="feature-item">
+                        <i>🖼️</i>
+                        <h6>Photo Gallery</h6>
+                        <p>View past event images</p>
+                    </div>
+                    <div class="feature-item">
+                        <i>🔍</i>
+                        <h6>Smart Search</h6>
+                        <p>Find events by name or category</p>
+                    </div>
+                    <div class="feature-item">
+                        <i>📱</i>
+                        <h6>Mobile Friendly</h6>
+                        <p>Works on all devices</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Local Community Portal. All rights reserved.</p>
+            <p>Serving our community with pride and dedication.</p>
+        </div>
+    </footer>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
